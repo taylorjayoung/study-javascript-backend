@@ -1,0 +1,2 @@
+class QuestionsCategoriesController < ApplicationController
+end
