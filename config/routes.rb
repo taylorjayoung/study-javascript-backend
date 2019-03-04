@@ -6,5 +6,4 @@ Rails.application.routes.draw do
   resources :questions
 
   post '/login', to: 'sessions#create'
-  get '/profile', to: 'users#profile'
 end
