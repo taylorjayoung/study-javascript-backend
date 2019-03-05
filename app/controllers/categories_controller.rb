@@ -26,7 +26,6 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.save
-#Ruby Controller Validations , WE don't want free access to corrupt databse
       render(json: @category, status: :ok)
     else
       render json: {message: 'invalid'}

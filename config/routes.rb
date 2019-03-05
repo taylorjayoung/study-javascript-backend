@@ -4,6 +4,4 @@ Rails.application.routes.draw do
   resources :categories
   resources :collections
   resources :questions
-
-  post '/login', to: 'sessions#create'
 end

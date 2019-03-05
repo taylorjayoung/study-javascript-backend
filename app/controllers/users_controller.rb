@@ -34,7 +34,8 @@ class UsersController < ApplicationController
       else
         render json: {message: 'invalid'}
       end
-    end 
+    end
+
   private
     def user_params
        params.require(:user).permit(:username, :name, :password, :email)
