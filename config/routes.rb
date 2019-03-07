@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   get '/', to: 'application#standard'
-  post'/signup', to: 'users#create'
+  # post'/signup', to: 'users#create'
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
