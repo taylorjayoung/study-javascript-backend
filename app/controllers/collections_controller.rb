@@ -1,12 +1,12 @@
 class CollectionsController < ApplicationController
   def index
     @collections = Collection.all
-    render( {json: @collections, include: :questions,  status: :ok} )
+    render( {json: @collections, include: [:questions, :starring_users],  status: :ok} )
   end
 
   def show
     @collection = Collection.find(params[:id])
-    render( {json: @collection, include: :questions,  status: :ok} )
+    render( {json: @collection, include: [:questions, :starring_users],  status: :ok} )
   end
 
   def edit

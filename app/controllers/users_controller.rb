@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    render( {json: @users, include: [:questions, :collections], status: :ok} )
+    render( {json: @users, include: [:questions, :collections, :starred_questions, :starred_collections], status: :ok} )
   end
 
   def show
