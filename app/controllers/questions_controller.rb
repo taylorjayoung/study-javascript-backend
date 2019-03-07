@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all
-    render( {json: @questions, include: [:comments, :categories], status: :ok} )
+    render( {json: [@current_user, @questions, include: [:comments, :categories]], status: :ok} )
   end
 
   def show
