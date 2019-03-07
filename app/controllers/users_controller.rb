@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
     def create
-      @user = User.new(question_params)
+      @user = User.new(user_params)
+      byebug
       if @user.save
         render(json: @user, status: :ok)
       else
