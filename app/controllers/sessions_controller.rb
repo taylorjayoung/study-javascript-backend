@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   # create session
   def create
     @user = User.find_by(username: user_params[:username])
-    byebug
     if (@user && @user.authenticate(user_params[:password]))
       session[:user_id] = @user.id
       render json: {
