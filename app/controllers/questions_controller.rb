@@ -23,6 +23,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @questions = Question.find(params[:id])
+    if @questions.destroy
+      render json: {message: 'destroyed'}
+    else
+      render json: {message: 'not found'}
+    end
+
+  end
+
   def update
     @question = Question.find(params[:id])
     if @question.save

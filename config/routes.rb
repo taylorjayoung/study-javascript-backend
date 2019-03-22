@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :collections
   resources :questions
   resources :sessions
+  resources :questions_collections
 
   get '/', to: 'application#standard'
   post'/signup', to: 'users#create'

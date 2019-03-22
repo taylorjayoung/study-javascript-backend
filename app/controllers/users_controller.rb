@@ -5,14 +5,13 @@ class UsersController < ApplicationController
     if @user.save
       render(json: @user, status: :ok)
     else
-
       render json: {message: 'invalid'}
     end
   end
 
   def index
     @users = User.all
-    render( {json: @users, include: [:questions, :collections, :starred_questions, :starred_collections], status: :ok} )
+    render( {json: @users, include: [:questions, :collections], status: :ok} )
   end
 
   def show
