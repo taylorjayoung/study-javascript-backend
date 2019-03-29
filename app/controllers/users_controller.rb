@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render( {json: @user, include: :questions,  status: :ok} )
+    render( {json: @user, include: [:questions, :starred_collections, :starred_questions] , status: :ok} )
   end
 
   def edit
@@ -37,5 +37,4 @@ class UsersController < ApplicationController
     def user_params
        params.require(:user).permit(:username, :name, :password, :email)
     end
-
 end
