@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_072112) do
+ActiveRecord::Schema.define(version: 2019_03_07_205324) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_072112) do
 
   create_table "comments", force: :cascade do |t|
     t.string "message"
-    t.integer "question_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -46,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_072112) do
   end
 
   create_table "questions_categories", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "category_id"
+    t.bigint "question_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_questions_categories_on_category_id"
@@ -55,12 +58,21 @@ ActiveRecord::Schema.define(version: 2019_03_04_072112) do
   end
 
   create_table "questions_collections", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "collection_id"
+    t.bigint "question_id"
+    t.bigint "collection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["collection_id"], name: "index_questions_collections_on_collection_id"
     t.index ["question_id"], name: "index_questions_collections_on_question_id"
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "collection_id"
+    t.bigint "question_id"
+    t.index ["collection_id"], name: "index_stars_on_collection_id"
+    t.index ["question_id"], name: "index_stars_on_question_id"
+    t.index ["user_id"], name: "index_stars_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +85,11 @@ ActiveRecord::Schema.define(version: 2019_03_04_072112) do
     t.string "password_digest"
   end
 
+  add_foreign_key "questions_categories", "categories"
+  add_foreign_key "questions_categories", "questions"
+  add_foreign_key "questions_collections", "collections"
+  add_foreign_key "questions_collections", "questions"
+  add_foreign_key "stars", "collections"
+  add_foreign_key "stars", "questions"
+  add_foreign_key "stars", "users"
 end

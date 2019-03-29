@@ -1,12 +1,12 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all
-    render( {json: [@current_user, @questions, include: [:comments, :categories]], status: :ok} )
+    render( {json: [@questions, include: [:comments, :categories, :starring_users]], status: :ok} )
   end
 
   def show
     @question = Question.find(params[:id])
-    render( {json: @question, include: [:comments ,:collections], status: :ok} )
+    render( {json: @question, include: [:comments ,:collections, :starring_users], status: :ok} )
   end
 
   def edit
@@ -21,6 +21,16 @@ class QuestionsController < ApplicationController
     else
       render json: {message: 'invalid'}
     end
+  end
+
+  def destroy
+    @questions = Question.find(params[:id])
+    if @questions.destroy
+      render json: {message: 'destroyed'}
+    else
+      render json: {message: 'not found'}
+    end
+
   end
 
   def update
