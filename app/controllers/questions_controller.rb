@@ -1,13 +1,18 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all
-    render( {json: [@questions, include: [:comments, :categories, :starring_users]], status: :ok} )
+    render( {json: @questions, include: [:comments, :categories, :starring_users], status: :ok} )
   end
 
   def show
     @question = Question.find(params[:id])
     star_count = @question.starring_users.length
-    render( {json: @question, include: [:comments ,:collections, :starring_users], star_count status: :ok} )
+    render({
+      json: @question,
+      include: [:comments ,:collections, :starring_users],
+      star_count: star_count,
+      status: :ok
+      })
   end
 
   def edit
