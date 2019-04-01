@@ -3,5 +3,4 @@ class Star < ApplicationRecord
   belongs_to :question, required: false
   belongs_to :collection , required: false
 
-
 end
