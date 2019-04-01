@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     star_count = @question.starring_users.length
-    render( {json: @question, include: [:comments ,:collections, :starring_users], star_count, status: :ok} )
+    render( {json: @question, include: [:comments ,:collections, :starring_users], star_count status: :ok} )
   end
 
   def edit
