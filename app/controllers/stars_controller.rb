@@ -1,5 +1,10 @@
 class StarsController < ApplicationController
 
+  def index
+    @stars = Star.all
+    render(json: @stars, status: :ok)
+  end
+
   def create
     @star = Star.new(star_params)
     if @star.save
