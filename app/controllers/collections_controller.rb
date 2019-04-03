@@ -1,7 +1,17 @@
 class CollectionsController < ApplicationController
   def index
-    @collections = Collection.all
-    render( {json: @collections, include: [:questions, :starring_users],  status: :ok} )
+    @data = Collection.all
+    @collections = @data.map do |c|
+     {
+       id: c.id,
+       title: c.title,
+       creator_id: c.user_id,
+       questions: c.questions,
+       stars: c.starring_users.length
+      }
+   end
+
+    render( {json: @collections,  status: :ok} )
   end
 
   def show

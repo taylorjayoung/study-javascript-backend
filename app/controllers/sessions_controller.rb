@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
         email: @user.email,
         username: @user.username,
         password: @user.password,
-        current_user: @user.id
+        current_user: @user.id,
+        starred_collections: @user.starred_collections.ids,
+        starred_questions: @user.starred_questions,
+        my_collection: @user.collections,
+        my_questions: @user.questions
       }
     else
       render json: {message: "Username or password is incorrect."}
