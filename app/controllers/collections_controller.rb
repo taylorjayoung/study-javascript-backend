@@ -27,7 +27,9 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new(collection_params)
     if @collection.save
-      render(json: @collection, status: :ok)
+      @question = Question.create(title: "#{@collection.title} first card", questionText: "Sample Question", answerText: "Sample Answer", user_id: @collection.user_id)
+      @qc = QuestionsCollection.create(question_id: @question.id, collection_id: @collection.id)
+      render(json: @collection, include: [:questions], status: :ok)
     else
       render json: {message: 'invalid'}
     end
@@ -41,10 +43,24 @@ class CollectionsController < ApplicationController
     else
       render json: {message: 'invalid'}
     end
+  end
+
+  def destroy
+    @collection = Collection.find(params[:id])
+    if @collection.destroy
+      @collections = Collection.all
+      render( json: {
+        collections: @collections,
+        message: 'destroyed',
+        status: :ok
+      })
+    else
+      render json: {message: 'not found'}
+    end
 
   end
 
   def collection_params
-     params.require(:collection).permit(:title, :questions, :user_id, :private)
+     params.require(:collection).permit(:title, :user_id, :private)
   end
 end

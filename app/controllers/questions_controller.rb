@@ -42,6 +42,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.save
+
 #Ruby Controller Validations , WE don't want free access to corrupt databse
       render(json: @question, status: :ok)
     else

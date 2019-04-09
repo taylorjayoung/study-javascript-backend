@@ -7,5 +7,7 @@ class Question < ApplicationRecord
   has_many :stars
   has_many :starring_users, through: :stars, source: :user
 
+  accepts_nested_attributes_for :questions_collections
+
   belongs_to :user
 end

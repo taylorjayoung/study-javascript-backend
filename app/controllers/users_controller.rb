@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render( {json: @user, include: [:questions, :starred_collections, :starred_questions] , status: :ok} )
+    render( {json: @user, include: [:questions, :collections, :starred_collections, :starred_questions] , status: :ok} )
   end
 
   def edit
