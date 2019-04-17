@@ -41,8 +41,15 @@ class CollectionsController < ApplicationController
     else
       render json: {message: 'invalid'}
     end
-
   end
+
+  def destroy
+    @collection = Collection.find(params[:id])
+    @collection.destroy
+    render json: {message: 'deleted'}
+  end
+
+  private
 
   def collection_params
      params.require(:collection).permit(:title, :questions, :user_id, :private)
