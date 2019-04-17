@@ -13,7 +13,7 @@ This application allows users to view and create collections resembling flashcar
 
 ## Getting Started
 
-Fork and clone this repository. `cd` into directory. Run `bundle install` for required gems. Run `rails db:migrate` to run table migrations. Use rails server command in terminal `rails server` to launch a web server to access application through web browser.
+Fork and clone this repository. `cd` into directory. Run `bundle install` for required gems. Run `rake db:migrate` to run table migrations. Use rails server command in terminal `rails s` to launch a web server to access application through web browser.
 
 Ensure to run installation for frontend for full application: [Front-End](https://github.com/sinyoungnam/study-javascript-frontend)
 
