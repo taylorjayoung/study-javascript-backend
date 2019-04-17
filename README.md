@@ -19,7 +19,7 @@ Ensure to run installation for frontend for full application: [Front-End](https:
 
 ## Built With
 
-Collaborated with another web-developer on backend developed with Ruby on Rails with following the RESTful convention to implement CRUD as a JSON API.
+Collaborated with another web-developer on frontend, developed with React.js. This Rails backend follows RESTful conventions and allows CRUD through a JSON API.
 
 ## Versioning
 
