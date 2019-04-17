@@ -58,7 +58,8 @@ class CollectionsController < ApplicationController
       render json: {message: 'not found'}
     end
 
-  end
+
+  private
 
   def collection_params
      params.require(:collection).permit(:title, :user_id, :private)
