@@ -57,7 +57,7 @@ class CollectionsController < ApplicationController
     else
       render json: {message: 'not found'}
     end
-
+  end
 
   private
 
