@@ -24,13 +24,13 @@ class SessionsController < ApplicationController
 
   # delete session
   def destroy
-    session.delete(:user_id)
+    session.delete(params[:user_id])
     render json: {message: 'Logged out'}
   end
 
   private
 
   def user_params
-    params.require(:session).permit(:username, :password)
+    params.require(:session).permit(:user_id)
   end
 end
